@@ -12,8 +12,6 @@ import {
   IconFileWord,
   IconFolder,
   IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
   IconReport,
   IconSearch,
   IconSettings,
@@ -30,11 +28,10 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Image from "next/image";
 import Logo from "./ui/logo";
+import { RepairsIcon } from "@/app/assets/icon/icon";
 
 const data = {
   user: {
@@ -49,13 +46,13 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "/lifecycle",
-      icon: IconListDetails,
+      title: "Repairs & Chases",
+      url: "/repairs&chases",
+      icon: RepairsIcon,
     },
     {
-      title: "Analytics",
-      url: "/analytics",
+      title: "Messages",
+      url: "/messages",
       icon: IconChartBar,
     },
     {
@@ -161,7 +158,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <Link href="/dashboard">
               <Logo />
-              <p className="text-[#5E5E5E] text-center font-inter text-[9.125px] font-normal leading-[12.167px]">Your housing services in one place.</p>
+              <p className="text-[#5E5E5E] text-center font-inter text-[9.125px] font-normal leading-[12.167px]">
+                Your housing services in one place.
+              </p>
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>

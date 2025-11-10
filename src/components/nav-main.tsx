@@ -9,29 +9,26 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Icon } from "@tabler/icons-react";
+import type { Icon as TablerIcon } from "@tabler/icons-react";
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon?: Icon;
-  }[];
-}) {
+type NavItem = {
+  title: string;
+  url: string;
+  icon?: TablerIcon; // Tabler icon component (not JSX yet)
+};
+
+export function NavMain({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
 
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2"></SidebarMenuItem>
-        </SidebarMenu>
-        <SidebarMenu>
           {items.map((item) => {
             const isActive =
               pathname === item.url || pathname.startsWith(item.url + "/");
+            const Icon = item.icon; // assign for clean JSX
+
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
@@ -39,9 +36,11 @@ export function NavMain({
                   isActive={isActive}
                   tooltip={item.title}
                 >
-                  <Link href={item.url}>
-                    {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                  <Link href={item.url} className="flex items-center gap-2">
+                    {Icon && <Icon className="w-4 h-4 shrink-0" />}
+                    <span className="truncate text-sm font-medium">
+                      {item.title}
+                    </span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
